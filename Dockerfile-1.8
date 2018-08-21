@@ -1,0 +1,9 @@
+FROM perl:threaded
+
+RUN set -x && \
+    cpanm Net::SNMP && \
+    cpanm Number::Bytes::Human && \
+    wget http://www.nothink.org/codes/snmpcheck/snmpcheck-1.8.pl -O /snmpcheck && \
+    chmod +x /snmpcheck
+
+ENTRYPOINT [ "/snmpcheck" ]
